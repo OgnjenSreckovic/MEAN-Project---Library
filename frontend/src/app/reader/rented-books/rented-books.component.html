@@ -1,0 +1,27 @@
+<div class="container">
+    <mat-card *ngFor="let indeks of [0, 1, 2]" class="kartica">
+        <mat-card-title>Zadužena knjiga #{{indeks+1}}</mat-card-title>
+        <mat-card-subtitle *ngIf="indeks < user.rentedBooks.length">Iznajmljena: {{user.rentedBooks[indeks].dateRented.toLocaleDateString()}} na {{user.rentedBooks[indeks].rentPeriod}} dana</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="indeks >= user.rentedBooks.length">Niste iznajmili knjigu.</mat-card-subtitle>
+        <mat-card-content class="border">
+            <app-book-preview 
+                *ngIf="indeks < user.rentedBooks.length" 
+                [rentInfo]="user.rentedBooks[indeks]"
+                (click)="bookDetails(user.rentedBooks[indeks].bookId)"
+            ></app-book-preview>
+        </mat-card-content>
+        <mat-card-actions *ngIf="indeks < user.rentedBooks.length">
+            <button mat-raised-button color="primary"
+                (click)="returnBook(user.rentedBooks[indeks])"
+            >Razduži</button>
+            <button mat-button color="primary"
+                (click)="bookDetails(user.rentedBooks[indeks].bookId)"
+            >Detalji o knjizi</button>
+        </mat-card-actions>
+        <mat-card-actions *ngIf="indeks >= user.rentedBooks.length">
+            <a mat-button color="primary"
+                href="citalac/pretraga"
+            >Pretražite biblioteku. Možda vam se nešto svidi...</a>
+        </mat-card-actions>
+    </mat-card>
+</div>

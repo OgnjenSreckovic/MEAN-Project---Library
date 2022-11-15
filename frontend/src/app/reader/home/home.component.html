@@ -1,0 +1,17 @@
+<div class="div-knjiga-dana" (click)="viewBook()">
+    <table class="tabela-knjiga-dana">
+        <tr>
+            <td>
+                <img [src]="book.image" [alt]="book.image" class="book-image">
+            </td>
+            <td>
+                <h2>Knjiga dana: {{book.title}}</h2>
+                <h3>Autor: {{book.authors}}</h3>
+                Prosečna ocena: {{book.avgReview}}/10
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="div-obavestenja">
+
+</div>

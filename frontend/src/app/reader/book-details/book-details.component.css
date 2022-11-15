@@ -1,0 +1,95 @@
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+table {
+    min-width: 100%;
+    width: fit-content;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.image-td {
+    width: 320px;
+    height: 480px;
+    text-align: center;
+    vertical-align: top;
+}
+
+
+.info-td {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+    vertical-align: top;
+}
+
+img {
+    width: 100%;
+    min-width: 100px;
+    max-height: 480px;
+    max-width: 320px;
+    margin: auto;
+}
+
+
+.span-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 450;
+}
+
+
+.span-authors {
+    font-size: 20px;
+    line-height: 24px;
+    color: #565959
+}
+
+.info-td li {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 5.5px;
+}
+
+.ul-info {
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.important {
+    font-size: 16px!important;
+    line-height: 22px!important;
+}
+
+.btn-zaduzi {
+    height: 42px;
+    font-size: 16px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.error {
+    color: red;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.comment-div {
+    padding: 5px;
+    background-color: rgb(234, 237, 237);
+}
+
+.div-komentari {
+    margin-left: 15px;
+}
+
+.w100 {
+    width: 100%;
+}

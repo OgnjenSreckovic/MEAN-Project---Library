@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Istorija zaduživanja:</h1>
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" matSortActive="dateReturned" matSortDirection="desc">
+        <!-- Naziv knjige -->
+        <ng-container matColumnDef="bookTitle">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Naslov </th>
+            <td mat-cell *matCellDef="let element"> {{element.bookTitle}} </td>
+        </ng-container>
+
+        <!-- Autori knjige -->
+        <ng-container matColumnDef="bookAuthors">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Autori </th>
+            <td mat-cell *matCellDef="let element"> {{element.bookAuthors.join(', )')}} </td>
+        </ng-container>
+
+        <!-- Datum zaduzivanja -->
+        <ng-container matColumnDef="dateRented">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum zaduživanja </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateRented.toLocaleDateString() }} </td>
+        </ng-container>
+
+        <!-- Datum razduzivanja -->
+        <ng-container matColumnDef="dateReturned">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum razduživanja </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateReturned.toLocaleDateString() }} </td>
+        </ng-container>
+
+        <!-- Link ka knjizi -->
+        <ng-container matColumnDef="bookUrl">
+            <th mat-header-cell *matHeaderCellDef> Link ka knjizi </th>
+            <td mat-cell *matCellDef="let element"> <a mat-button [href]="element.bookUrl">detalji</a> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+    </table>
+</div>

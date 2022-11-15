@@ -1,0 +1,132 @@
+<div class="main-div">
+                 
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title >Lični podaci</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <table>
+                    <tr>
+                        <td>
+                            <img [src]="imageSrc" alt="image" height="150px">
+                        </td>
+                        <td class="td-btn">
+                            <button class="btn" type="button" mat-raised-button color="primary" (click)="fileInput.click()">Odaberite profilnu sliku</button>
+                            <input hidden onClick="value = null" (change)="onFileSelected($event)" #fileInput type="file">
+                            <button class="btn" type="button" mat-raised-button color="warn" (click)="revertImage()" [disabled]="selectedFile==null">Poništi</button>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label *ngIf="f.username.value==user.username">Korisničko ime</mat-label>
+                    <mat-label *ngIf="f.username.value!=user.username">Korisničko ime (promenjeno)</mat-label>
+                    <input formControlName="username" matInput placeholder="Unesite korisničko ime">
+                    <button *ngIf="f.username.value!=user.username" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.username.setValue(user.username)">
+                        <mat-icon>settings_backup_restore</mat-icon>
+                    </button>
+                    <mat-error *ngIf="f.username.invalid">Korisničko ime je obavezno.</mat-error>
+                    
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label *ngIf="f.fullName.value==user.fullName">Ime i prezime</mat-label>
+                    <mat-label *ngIf="f.fullName.value!=user.fullName">Ime i prezime (promenjeno)</mat-label>
+                    <input formControlName="fullName" matInput placeholder="Unesite ime i prezime">
+                    <button *ngIf="f.fullName.value!=user.fullName" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.fullName.setValue(user.fullName)">
+                        <mat-icon>settings_backup_restore</mat-icon>
+                    </button>
+                    <mat-error *ngIf="f.fullName.invalid">Ovo polje je obavezno.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label *ngIf="f.address.value==user.address">Adresa</mat-label>
+                    <mat-label *ngIf="f.address.value!=user.address">Adresa (promenjeno)</mat-label>
+                    <input formControlName="address" matInput placeholder="Ulica Broj, Grad">
+                    <button *ngIf="f.address.value!=user.address" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.address.setValue(user.address)">
+                        <mat-icon>settings_backup_restore</mat-icon>
+                    </button>
+                    <mat-error *ngIf="f.address.invalid">Ovo polje je obavezno.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label *ngIf="f.phone.value==user.phone">Kontakt telefon</mat-label>
+                    <mat-label *ngIf="f.phone.value!=user.phone">Kontakt telefon (promenjeno)</mat-label>
+                    <input type="text" formControlName="phone" matInput placeholder="Unesite broj telefona">
+                    <button *ngIf="f.phone.value!=user.phone" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.phone.setValue(user.phone)">
+                        <mat-icon>settings_backup_restore</mat-icon>
+                    </button>
+                    <mat-error *ngIf="f.phone.hasError('required')">Ovo polje je obavezno.</mat-error>
+                    <mat-error *ngIf=" f.phone.hasError('pattern')">Molim vas unesite validan kontakt telefon.</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label *ngIf="f.email.value==user.email">Email adresa</mat-label>
+                    <mat-label *ngIf="f.email.value!=user.email">Email adresa (promenjeno)</mat-label>
+                    <input type="email" formControlName="email" matInput placeholder="Unesite adresu e-pošte">
+                    <button *ngIf="f.email.value!=user.email" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.email.setValue(user.email)">
+                        <mat-icon>settings_backup_restore</mat-icon>
+                    </button>
+                    <mat-error *ngIf="f.email.hasError('required')">Ovo polje je obavezno.</mat-error>
+                    <mat-error *ngIf="f.email.hasError('email')">Ovo nije validna Email adresa.</mat-error>
+                </mat-form-field>
+                
+                <br>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Sacuvaj promene</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+
+    <br>         
+   
+    <form [formGroup]="pwForm" (ngSubmit)="changePassword()" >
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title >Promena šifre</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field appearance="outline" >
+                    <mat-label>Trenutna lozinka</mat-label>
+                    <input type="password" formControlName="oldPassword" matInput placeholder="Unesite trenutnu lozinku">
+                    <mat-error *ngIf="pwf.oldPassword.hasError('required')">
+                        Lozinka je obavezna.
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="mb-10" appearance="outline"class="mb-10">
+                    <mat-label>Nova lozinka</mat-label>
+                    <input type="password" formControlName="password" matInput placeholder="Unesite lozinku">
+                    <mat-hint *ngIf="!pwfSubmitted">
+                        Lozinka mora počinjati slovom, imati od 8 do 12 karaktera, od toga bar jedno veliko slovo, jedan broj i jedan specijalni karakter.
+                    </mat-hint>
+                    <mat-error *ngIf="pwfSubmitted && pwf.password.hasError('pattern')">
+                        Lozinka mora počinjati slovom, imati od 8 do 12 karaktera, od toga bar jedno veliko slovo, jedan broj i jedan specijalni karakter.
+                    </mat-error>
+                    <mat-error *ngIf="pwf.password.hasError('required')">
+                        Lozinka je obavezna.
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline">
+                    <mat-label>Potvrda lozinke</mat-label>
+                    <input type="password" formControlName="passwordConfirm" matInput placeholder="Unesite ponovo lozinku">
+                    <mat-error *ngIf="pwf.passwordConfirm.hasError('required')">Ovo polje je obavezno.</mat-error>
+                    <mat-error 
+                        *ngIf="!pwf.passwordConfirm.hasError('required') && pwf.passwordConfirm.hasError('match_error')"
+                    >
+                        Šifra se ne poklapa.
+                    </mat-error>
+                </mat-form-field>
+                <br>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" >Promeni šifru</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>
+
+

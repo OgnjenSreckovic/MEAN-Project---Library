@@ -1,0 +1,19 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="setRentPeriod()" >
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title >Promena perioda zaduživanja (trenutno: {{currPeriod}} dana)</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="mb-10" appearance="outline"class="mb-10">
+                    <mat-label>Period zaduzivanja</mat-label>
+                    <input type="number" min="1" formControlName="newPeriod" matInput placeholder="Unesite broj dana">
+
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" [disabled]="currPeriod==form.controls.newPeriod.value">Sačuvaj</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>

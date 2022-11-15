@@ -1,0 +1,15 @@
+<mat-card class="comment-card">
+    <mat-card-header>
+        <img mat-card-avatar class="profile-picture" [src]="user.imagePath">
+        
+        <mat-card-title>{{comment.username}}</mat-card-title>
+        <mat-card-subtitle>{{comment.date.toLocaleDateString()}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <h3>Ocena: {{comment.review}}/10</h3>
+        <h3>Komentar:</h3>
+        <p class="text">
+          {{comment.text}}
+        </p>
+    </mat-card-content>
+</mat-card>

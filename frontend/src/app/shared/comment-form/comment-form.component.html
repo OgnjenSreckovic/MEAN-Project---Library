@@ -1,0 +1,27 @@
+<h2>Ostavite komentar:</h2>
+<form [formGroup]="commentForm" (ngSubmit)="post()">
+    <mat-card>
+        <mat-card-header>
+            <img mat-card-avatar class="profile-picture" [src]="user.imagePath">            
+            <mat-card-title>{{user.username}}</mat-card-title>
+            <mat-card-subtitle>{{userComment.date.toLocaleDateString()}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <span class="color-primary">Ocena : </span>
+            <mat-slider formControlName="review" color="primary"
+                max=10 min=1  step=1 thumbLabel="true" 
+            ></mat-slider>
+            <mat-form-field appearance="outline" class="w100">
+                <mat-label>Tekst</mat-label>
+                <textarea formControlName="text" matInput placeholder="Unesite komentar"></textarea>
+                <mat-error *ngIf="f.text.invalid">Ovo polje je obavezno.</mat-error>
+            </mat-form-field>
+            <br>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">
+                {{ alreadyPosted ? 'Azuriraj' : 'Postavi'}}
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</form>

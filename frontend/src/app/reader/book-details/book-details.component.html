@@ -1,0 +1,66 @@
+<div *ngIf="book == null" class="container">
+    <h1>Tražena stranica ne postoji.</h1>
+</div>
+<div *ngIf="book != null" class="container">
+    <div *ngIf="!editMode">
+        <table>
+            <tr>
+                <td class="image-td">
+                    <img [src]="book.image" [alt]="book.title" >
+                </td>
+                <td class="info-td">
+                    <span class="span-title">{{book.title}}</span><span class="span-authors">&nbsp;|&nbsp;{{book.year}}</span><br>
+                    <span class="span-authors">{{authorsString}} </span> 
+                    <hr>
+                    <ul class="ul-info">
+                        <li>
+                            <span><b>Žanr : </b> {{genresString}}</span> <br>
+                        </li>
+                        <li>
+                            <span><b>Jezik : </b> {{book.language}}</span> <br>
+                        </li>
+                        <li>
+                            <span><b>Izdavač : </b>{{book.publisher}}</span> <br>
+                        </li>
+                        <li>
+                            <span><b>Godina izdavanja : </b>{{book.year}}</span> <br>
+                        </li>
+                        <li>
+                            <span><b>Broj kopija : </b>{{book.numOfCopies}}</span> <br>
+                        </li>
+                        <li>
+                            <span class="important"><b>Broj kopija na stanju : </b>{{book.availCopies}}</span> <br>
+                        </li>
+                    </ul>
+                    <hr>            
+                    <button mat-raised-button color="primary" class="btn-zaduzi" [disabled]="book.availCopies==0 || userHasThisBook || isAdmin" (click)="rent()">
+                        {{(book.availCopies <= 0)  ? "Nema na stanju" : ((userHasThisBook) ? "Zadužena" : "Zaduži") }}
+                    </button>
+                    <button *ngIf="isMod" mat-raised-button color="accent" class="btn-zaduzi" (click)="editMode = true">
+                    Ažuriraj
+                    </button>
+                    <br>
+                    <mat-error>{{rentError}}</mat-error>
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="editMode">
+        <app-edit-book [book]="book" (edited)="editFinished($event)"></app-edit-book>
+    </div>
+    <hr>
+    <div class="comment-form" >
+        <app-comment-form *ngIf="canComment" [user]="user" [userComment]="userComment" (posted)="onCommentPosted($event)"></app-comment-form>
+        <span *ngIf="!userComment">&nbsp;Samo korisnici koji su zaduzivali knjigu mogu da ostave komentar.</span>
+    </div>
+    <div class="div-komentari">
+        <br>
+        <h2>Prosečna ocena: {{book.avgReview}}/10</h2>
+        <h2>Komentari:</h2>
+        <div *ngFor="let c of book.comments" class="comment-div">
+            <app-comment [comment]="c"></app-comment>
+        </div>
+
+    </div>
+</div>

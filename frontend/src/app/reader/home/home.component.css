@@ -1,0 +1,18 @@
+.book-image {
+    height: 100px;
+    margin: 5px;
+}
+
+.tabela-knjiga-dana {
+    padding: 10px;
+}
+
+.div-knjiga-dana:hover {
+    cursor: pointer;
+}
+
+
+.div-knjiga-dana {
+    border: 10px double #673AB7;
+    margin: 5px;
+}

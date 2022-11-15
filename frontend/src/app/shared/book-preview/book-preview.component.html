@@ -1,0 +1,24 @@
+<table>
+    <tr>
+        <td class="image-td">
+            <img [src]="book.image" [alt]="book.title" height="100px">
+        </td>
+        <td class="info-td">
+            <span class="span-title">{{book.title}}</span> <br>
+            <span class="span-authors">{{authorsString}}  |  {{book.year}}</span> 
+            <hr>
+            <div *ngIf="!isRented">
+                <span>Ocena: {{book.avgReview}}/10</span> <br>            <span>Izdavač: {{book.publisher}}</span> <br>
+            </div>
+            
+            <div *ngIf="isRented">
+                <span *ngIf="daysUntilDeadline >= 0">
+                    Rok za vraćanje: {{daysUntilDeadline}} dana
+                </span>
+                <mat-error *ngIf="daysUntilDeadline < 0" class="deadline-warning">
+                    Rok za vraćanje istekao pre: <b>{{-daysUntilDeadline}} dana</b>
+                </mat-error>
+            </div>
+        </td>
+    </tr>
+</table>

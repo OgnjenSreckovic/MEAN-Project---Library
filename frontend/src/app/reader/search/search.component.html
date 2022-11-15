@@ -1,0 +1,28 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="search()" >
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Pretraga</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field appearance="outline" >
+                    <mat-label>Naslov</mat-label>
+                    <input type="text" formControlName="title" matInput placeholder="Unesite ključne reči iz naslova knjige">
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="outline" >
+                    <mat-label>Autori:</mat-label>
+                    <input type="text" formControlName="authors" matInput placeholder="Unesite imena ili prezimena autora">
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" >Pretraži</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+    <div class="results-div">
+        <div *ngFor="let b of books" class="mb-5">
+            <app-book-preview [book]="b" (click)="viewBookDetails(b._id)" ></app-book-preview>
+        </div>
+    </div>
+</div>

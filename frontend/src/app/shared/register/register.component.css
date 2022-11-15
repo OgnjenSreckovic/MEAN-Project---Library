@@ -1,0 +1,23 @@
+
+mat-form-field {
+    width: 100%;
+    height: auto;
+}
+
+.err{
+    color: red;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.imageField {
+    padding-bottom: auto;
+    padding-top: auto;
+
+}

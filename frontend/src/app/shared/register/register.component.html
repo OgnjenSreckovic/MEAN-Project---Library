@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Registracija</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline" class="imageField">
+                <img *ngIf="selectedFile" [src]="imageData" height="100px"> 
+                &nbsp;&nbsp;
+                <button type="button" mat-raised-button color="accent" (click)="fileInput.click()">Odaberite profilnu sliku</button>
+                &nbsp;&nbsp;
+                <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+                <span class="file-name">{{selectedFile?.name}}</span>
+                <input type="text" hidden matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Korisničko ime</mat-label>
+                <input formControlName="username" matInput placeholder="Unesite korisničko ime">
+                <mat-error *ngIf="f.username.invalid">Korisničko ime je obavezno.</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline"class="mb-10">
+                <mat-label>Lozinka</mat-label>
+                <input type="password" formControlName="password" matInput placeholder="Unesite lozinku">
+                <mat-hint *ngIf="!submitted">
+                    Lozinka mora počinjati slovom, imati od 8 do 12 karaktera, od toga bar jedno veliko slovo, jedan broj i jedan specijalni karakter.
+                </mat-hint>
+                <mat-error *ngIf="submitted && f.password.hasError('pattern')">
+                    Lozinka mora počinjati slovom, imati od 8 do 12 karaktera, od toga bar jedno veliko slovo, jedan broj i jedan specijalni karakter.
+                </mat-error>
+                <mat-error *ngIf="f.password.hasError('required')">
+                    Lozinka je obavezna.
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Potvrda lozinke</mat-label>
+                <input type="password" formControlName="passwordConfirm" matInput placeholder="Unesite ponovo lozinku">
+                <mat-error *ngIf="f.passwordConfirm.hasError('required')">Ovo polje je obavezno.</mat-error>
+                <mat-error 
+                    *ngIf="!f.passwordConfirm.hasError('required') && f.passwordConfirm.hasError('match_error')"
+                >
+                    Šifra se ne poklapa.
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Ime i prezime</mat-label>
+                <input formControlName="fullName" matInput placeholder="Unesite ime i prezime">
+                <mat-error *ngIf="f.fullName.invalid">Ovo polje je obavezno.</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Adresa</mat-label>
+                <input formControlName="address" matInput placeholder="Ulica Broj, Grad">
+                <mat-error *ngIf="f.address.invalid">Ovo polje je obavezno.</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Kontakt telefon</mat-label>
+                <input type="text" formControlName="phone" matInput placeholder="Unesite broj telefona">
+                <mat-error *ngIf="f.phone.hasError('required')">Ovo polje je obavezno.</mat-error>
+                <mat-error *ngIf=" f.phone.hasError('pattern')">Molim vas unesite validan kontakt telefon.</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Email adresa</mat-label>
+                <input type="email" formControlName="email" matInput placeholder="Unesite adresu e-pošte">
+                <mat-error *ngIf="f.email.hasError('required')">Ovo polje je obavezno.</mat-error>
+                <mat-error *ngIf="f.email.hasError('email')">Ovo nije validna Email adresa.</mat-error>
+            </mat-form-field>
+            <br>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Registracija</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+<br>

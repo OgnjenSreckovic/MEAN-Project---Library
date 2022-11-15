@@ -1,0 +1,15 @@
+.container {
+    padding: 10px;
+    background-color: rgb(235, 237, 237);
+}
+
+.kartica {
+    margin-bottom: 10px;
+}
+
+.border {
+    padding: 5px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 15px;
+}

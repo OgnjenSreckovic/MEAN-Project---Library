@@ -1,0 +1,41 @@
+table {
+    min-width: 100%;
+    width: fit-content;
+}
+
+table:hover {
+    cursor: pointer;
+}
+
+.image-td {
+    width: 110px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.info-td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+image {
+    margin: auto;
+}
+
+.span-title {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 450;
+}
+
+.span-title:hover {
+    color: #FFD740;
+}
+
+.span-authors {
+    font-size: 14px;
+    line-height: 20px;
+    color: #565959
+}
+

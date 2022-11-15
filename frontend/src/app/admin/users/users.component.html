@@ -1,0 +1,155 @@
+
+<app-register [isAdmin]="true"></app-register>
+<br>
+
+<div class="scroll">
+    <h1>Zahtevi za registraciju</h1>
+    <h3 *ngIf="requests.length==0">Nema zahteva za registraciju</h3>
+    <table *ngIf="requests.length>0" mat-table [dataSource]="requests">
+
+        <!-- columnsToDisplay = ['username', 'fullName', 'address', 'phone', 'email' 'type']; -->
+
+        <!-- username -->
+        <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef>Korisničko ime</th>
+            <td mat-cell *matCellDef="let user">{{user.username}}</td>
+        </ng-container>
+
+        
+        <!-- fullName -->
+        <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef>Ime i prezime</th>
+            <td mat-cell *matCellDef="let user">{{user.fullName}}</td>
+        </ng-container>
+
+
+        <!-- address -->
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>Adresa</th>
+            <td mat-cell *matCellDef="let user">{{user.address}}</td>
+        </ng-container>
+
+        <!-- phone -->
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>Kontakt telefon</th>
+            <td mat-cell *matCellDef="let user">{{user.phone}}</td>
+        </ng-container>
+
+        <!-- email -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>E-pošta</th>
+            <td mat-cell *matCellDef="let user">{{user.email}}</td>
+        </ng-container>
+
+        <!-- type -->
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>Tip</th>
+            <td mat-cell *matCellDef="let user">{{user.type}}</td>
+        </ng-container>
+
+        <!-- status -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let user">{{user.status}}</td>
+        </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="accept">
+            <th mat-header-cell *matHeaderCellDef class="tac">Prihvati</th>
+            <td mat-cell *matCellDef="let user">
+                <button class="btn-sm" mat-raised-button color="warn" (click)="accept(user)">
+                    Prihvati
+                </button>
+            </td>
+        </ng-container>
+        
+        <!-- actions -->
+        <ng-container matColumnDef="decline">
+            <th mat-header-cell *matHeaderCellDef class="tac">Odbij</th>
+            <td mat-cell *matCellDef="let user">
+                <button class="btn-sm" mat-raised-button color="primary" (click)="decline(user)">
+                    Odbij
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplayRequests"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplayRequests"></tr>
+    </table>
+</div>
+
+<div class="scroll">
+    <h1>Svi korisnici</h1>
+    <table mat-table [dataSource]="users">
+
+        <!-- columnsToDisplay = ['username', 'fullName', 'address', 'phone', 'email' 'type']; -->
+
+        <!-- username -->
+        <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef>Korisničko ime</th>
+            <td mat-cell *matCellDef="let user">{{user.username}}</td>
+        </ng-container>
+
+        
+        <!-- fullName -->
+        <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef>Ime i prezime</th>
+            <td mat-cell *matCellDef="let user">{{user.fullName}}</td>
+        </ng-container>
+
+
+        <!-- address -->
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>Adresa</th>
+            <td mat-cell *matCellDef="let user">{{user.address}}</td>
+        </ng-container>
+
+        <!-- phone -->
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>Kontakt telefon</th>
+            <td mat-cell *matCellDef="let user">{{user.phone}}</td>
+        </ng-container>
+
+        <!-- email -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>E-pošta</th>
+            <td mat-cell *matCellDef="let user">{{user.email}}</td>
+        </ng-container>
+
+        <!-- type -->
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef>Tip</th>
+            <td mat-cell *matCellDef="let user">{{user.type}}</td>
+        </ng-container>
+
+        <!-- status -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let user">{{user.status}}</td>
+        </ng-container>
+
+        <!-- actions -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef class="tac">Obriši</th>
+            <td mat-cell *matCellDef="let user">
+                <button [disabled]="user.rentedBooks.length > 0" class="btn-sm" mat-raised-button color="warn" (click)="delete(user)">
+                    Obriši
+                </button>
+            </td>
+        </ng-container>
+        
+        <!-- actions -->
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef class="tac">Uredi</th>
+            <td mat-cell *matCellDef="let user">
+                <button class="btn-sm" mat-raised-button color="primary" (click)="edit(user)">
+                    Uredi
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    </table>
+    
+</div>

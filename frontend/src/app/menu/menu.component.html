@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav " fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Meni</mat-toolbar>
+    <hr>
+    <mat-nav-list *ngIf="isHandset$ | async">
+      <a  *ngIf="hasProfile"  [routerLink]="profileLink" class="profileLink">
+        <img [src]="profileImagePath" alt="profil" class="profileImage">
+      </a>
+      <a *ngFor="let item of menuItems" mat-list-item (click)="drawer.toggle()" [routerLink]="item['link']" >{{item['label']}}</a>
+      <a mat-list-item *ngIf="canLogout"  (click)="logout()">Odjava</a>
+    </mat-nav-list>
+    <mat-nav-list *ngIf="!(isHandset$ | async)">
+      <a  *ngIf="hasProfile"  [routerLink]="profileLink" class="profileLink">
+        <img [src]="profileImagePath" alt="profil" class="profileImage">
+      </a>
+      <a *ngFor="let item of menuItems" mat-list-item [routerLink]="item['link']" >{{item['label']}}</a>
+      <a mat-list-item *ngIf="canLogout"  (click)="logout()">Odjava</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Biblioteka</span>
+    </mat-toolbar>
+    <div class="mat-app-background">
+        <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

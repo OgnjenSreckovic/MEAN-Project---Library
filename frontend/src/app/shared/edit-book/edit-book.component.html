@@ -1,0 +1,138 @@
+<div class="main-div">    
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title >Ažurirajte podatke o knjizi:</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <table>
+                    <tr>
+                        <td class="td-left">
+                            <img [src]="imageSrc" alt="image" height="150px">
+                        </td>
+                        <td rowspan="2" class="td-right">
+                            <mat-form-field appearance="outline">
+                                <mat-label *ngIf="f.title.value==book.title">
+                                    Naslov
+                                </mat-label>
+                                <mat-label *ngIf="f.title.value!=book.title">
+                                    Naslov (promenjeno)
+                                </mat-label>
+                                <input formControlName="title" matInput placeholder="Unesite naslov knjige">
+                                <button *ngIf="f.title.value!=book.title" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.title.setValue(book.title)">
+                                    <mat-icon>settings_backup_restore</mat-icon>
+                                </button>
+                                <mat-error *ngIf="f.title.invalid">
+                                    Naslov knjige je obavezan.
+                                </mat-error>       
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label *ngIf="f.authors.value==book.authors">
+                                    Autori
+                                </mat-label>
+                                <mat-label *ngIf="f.authors.value!=book.authors">
+                                    Autori (promenjeno)
+                                </mat-label>
+                                <input formControlName="authors" matInput placeholder="Unesite autore odvojene zarezom">
+                                <button *ngIf="f.authors.value!=book.authors" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.authors.setValue(book.authors)">
+                                    <mat-icon>settings_backup_restore</mat-icon>
+                                </button>
+                                <mat-error *ngIf="f.authors.invalid">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label *ngIf="f.genres.value==book.genres">
+                                    Žanrovi
+                                </mat-label>
+                                <mat-label *ngIf="f.genres.value!=book.genres">
+                                    Žanrovi (promenjeno)
+                                </mat-label>
+                                <input formControlName="genres" matInput placeholder="Unesite žanrove odvojene zarezom">
+                                <button *ngIf="f.genres.value!=book.genres" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.genres.setValue(book.genres)">
+                                    <mat-icon>settings_backup_restore</mat-icon>
+                                </button>
+                                <mat-error *ngIf="f.genres.invalid">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label *ngIf="f.language.value==book.language">
+                                    Jezik
+                                </mat-label>
+                                <mat-label *ngIf="f.language.value!=book.language" >
+                                    Jezik (promenjeno)
+                                </mat-label>
+                                <input type="text" formControlName="language" matInput placeholder="Unesite jezik">
+                                <button *ngIf="f.language.value!=book.language" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.language.setValue(book.language)">
+                                    <mat-icon>settings_backup_restore</mat-icon>
+                                </button>
+                                <mat-error *ngIf="f.language.hasError('required')">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label *ngIf="f.publisher.value==book.publisher">
+                                    Izdavač
+                                </mat-label>
+                                <mat-label *ngIf="f.publisher.value!=book.publisher" >
+                                    Izdavač (promenjeno)
+                                </mat-label>
+                                <input type="text" formControlName="publisher" matInput placeholder="Unesite izdavača">
+                                <button *ngIf="f.publisher.value!=book.publisher" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.publisher.setValue(book.publisher)">
+                                    <mat-icon>settings_backup_restore</mat-icon>
+                                </button>
+                                <mat-error *ngIf="f.publisher.hasError('required')">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label *ngIf="f.year.value==book.year">
+                                    Godina
+                                </mat-label>
+                                <mat-label *ngIf="f.year.value!=book.year" >
+                                    Godina (promenjeno)
+                                </mat-label>                                <input type="number" min="1" formControlName="year" matInput placeholder="Unesite godinu">
+                                <button *ngIf="f.year.value!=book.year" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.year.setValue(book.year)">
+                                    <mat-icon>settings_backup_restore</mat-icon>
+                                </button>
+                                <mat-error *ngIf="f.year.hasError('required')">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label *ngIf="f.availCopies.value==book.availCopies">
+                                    Broj slobodnih kopija
+                                </mat-label>
+                                <mat-label *ngIf="f.availCopies.value!=book.availCopies" >
+                                    Broj slobodnih kopija
+                                </mat-label>       
+                                <input type="number" min="0" formControlName="availCopies" matInput placeholder="Unesite broj kopija">
+                                <button *ngIf="f.availCopies.value!=book.availCopies" matSuffix mat-icon-button aria-label="Poništi promene" (click)="f.availCopies.setValue(book.availCopies)">
+                                    <mat-icon>settings_backup_restore</mat-icon>
+                                </button>
+                                <mat-error *ngIf="f.availCopies.hasError('required')">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-btn td-left">
+                            <button class="btn" type="button" mat-raised-button color="primary" (click)="fileInput.click()">
+                                Odaberite sliku
+                            </button>
+                            
+                            <input hidden onClick="value = null" (change)="onFileSelected($event)" #fileInput type="file">
+                            
+                            <button class="btn" type="button" mat-raised-button color="warn" (click)="revertImage()" [disabled]="selectedFile==null">
+                                Poništi
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Sačuvaj promene</button>
+                <button mat-raised-button color="accent" type="button" (click)="cancel()">Odustani</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>
+ 
+

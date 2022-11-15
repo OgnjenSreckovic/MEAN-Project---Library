@@ -1,0 +1,82 @@
+<div class="main-div">    
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title >Podaci o knjizi:</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <table>
+                    <tr>
+                        <td class="td-left">
+                            <img [src]="imageSrc" alt="image" height="150px">
+                        </td>
+                        <td rowspan="2" class="td-right">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Naslov</mat-label>
+                                <input formControlName="title" matInput placeholder="Unesite naslov knjige">
+                                <mat-error *ngIf="f.title.invalid">
+                                    Naslov knjige je obavezan.
+                                </mat-error>       
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Autori</mat-label>
+                                <input formControlName="authors" matInput placeholder="Unesite autore odvojene zarezom">
+                                <mat-error *ngIf="f.authors.invalid">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Žanrovi</mat-label>
+                                <input formControlName="genres" matInput placeholder="Unesite žanrove odvojene zarezom">
+                                <mat-error *ngIf="f.genres.invalid">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Jezik</mat-label>
+                                <input type="text" formControlName="language" matInput placeholder="Unesite jezik">
+                                <mat-error *ngIf="f.language.hasError('required')">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Izdavač</mat-label>
+                                <input type="text" formControlName="publisher" matInput placeholder="Unesite izdavača">
+                                <mat-error *ngIf="f.publisher.hasError('required')">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Godina</mat-label>
+                                <input type="number" min="1" formControlName="year" matInput placeholder="Unesite godinu">
+                                <mat-error *ngIf="f.year.hasError('required')">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline" *ngIf="isMod">
+                                <mat-label>Broj kopija</mat-label>
+                                <input type="number" min="1" formControlName="availCopies" matInput placeholder="Unesite broj kopija">
+                                <mat-error *ngIf="f.availCopies.hasError('required')">Ovo polje je obavezno.</mat-error>
+                            </mat-form-field>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-btn td-left">
+                            <button class="btn" type="button" mat-raised-button color="primary" (click)="fileInput.click()">
+                                Odaberite sliku
+                            </button>
+                            
+                            <input hidden onClick="value = null" (change)="onFileSelected($event)" #fileInput type="file">
+                            
+                            <button class="btn" type="button" mat-raised-button color="warn" (click)="revertImage()" [disabled]="selectedFile==null">
+                                Poništi
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">{{isMod ? "Dodaj knjigu" : "Podnesi zahtev"}}</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>
+ 
+

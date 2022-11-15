@@ -1,0 +1,36 @@
+.main-div {
+    margin-bottom: 100px!important;
+}
+
+mat-card {
+    background-color: ghostwhite!important;
+   
+}
+
+mat-form-field {
+    width: 80%!important;
+    height: auto!important;
+}
+
+.mb-10 {
+    margin-bottom: calc( 55px - 5vw )!important;
+}
+
+.btn {
+    width: 100%!important;
+}
+
+td {
+    vertical-align: bottom!important;
+}
+
+.td-btn {
+    
+    padding: 20px!important;
+}
+
+.td-btn button {
+    margin-top: 5px!important;
+}
+
+

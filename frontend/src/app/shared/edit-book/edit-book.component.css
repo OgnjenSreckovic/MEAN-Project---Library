@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+}
+
+.td-left {
+    width: 170px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.td-right {
+    min-width: 200px;
+    padding-left: 10px;
+}
+
+.td-right mat-form-field {
+    width: 100%;
+}
+
+.btn {
+    height: 36px;
+    font-size: 14px;
+    width: 80%;
+    margin-top: 20px;
+}
